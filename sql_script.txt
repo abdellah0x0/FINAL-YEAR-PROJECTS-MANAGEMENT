@@ -1,0 +1,81 @@
+-- Insert roles
+INSERT INTO roles (role) VALUES 
+('admin'),
+('enseignant'),
+('etudiant');
+
+-- Insert departments (Départements de l'INPT)
+INSERT INTO departements (nom) VALUES 
+('Génie Informatique'),
+('Réseaux et Télécommunications'),
+('Électronique et Systèmes Embarqués');
+
+-- Insert teachers (Enseignants)
+-- Note: We'll update department heads after inserting all teachers
+INSERT INTO enseignants (nom, prenom, email, dept_id) VALUES
+('Alaoui', 'Mohammed', 'm.alaoui@inpt.edu.ma', 1),
+('Benbrahim', 'Fatima', 'f.benbrahim@inpt.edu.ma', 1),
+('Khalil', 'Ahmed', 'a.khalil@inpt.edu.ma', 2),
+('Mansouri', 'Amina', 'a.mansouri@inpt.edu.ma', 2),
+('El Amrani', 'Youssef', 'y.elamrani@inpt.edu.ma', 3),
+('Bouzidi', 'Leila', 'l.bouzidi@inpt.edu.ma', 3);
+
+-- Update department heads
+UPDATE departements SET chef_id = 1 WHERE id = 1;
+UPDATE departements SET chef_id = 3 WHERE id = 2;
+UPDATE departements SET chef_id = 5 WHERE id = 3;
+
+-- Insert programs (Filières)
+INSERT INTO filieres (nom, dept_id, coord_id) VALUES
+('Ingénierie Logicielle', 1, 2),
+('Data Science', 1, 1),
+('Réseaux et Sécurité', 2, 4),
+('Télécommunications', 2, 3),
+('Systèmes Embarqués', 3, 6),
+('IoT et Cloud Computing', 3, 5);
+
+-- Insert students (Etudiants)
+INSERT INTO etudiants (matricule, promotion, nom, prenom, tel, email, fil_id) VALUES
+('INPT2021001', 2021, 'Benali', 'Karim', '0612345678', 'k.benali@inpt.ine.ma', 1),
+('INPT2021002', 2021, 'El Fassi', 'Amina', '0623456789', 'a.elfassi@inpt.ine.ma', 1),
+('INPT2021003', 2021, 'Zouhair', 'Mehdi', '0634567890', 'm.zouhair@inpt.ine.ma', 2),
+('INPT2021004', 2021, 'Bennani', 'Salma', '0645678901', 's.bennani@inpt.ine.ma', 2),
+('INPT2021005', 2021, 'Cherkaoui', 'Omar', '0656789012', 'o.cherkaoui@inpt.ine.ma', 3),
+('INPT2021006', 2021, 'Daoudi', 'Hafsa', '0667890123', 'h.daoudi@inpt.ine.ma', 3),
+('INPT2021007', 2021, 'Rhouzlane', 'Yassin', '0678901234', 'y.rhouzlane@inpt.ine.ma', 4),
+('INPT2021008', 2021, 'Saidi', 'Nadia', '0689012345', 'n.saidi@inpt.ine.ma', 4),
+('INPT2021009', 2021, 'Toumi', 'Adil', '0690123456', 'a.toumi@inpt.ine.ma', 5),
+('INPT2021010', 2021, 'Wahabi', 'Imane', '0601234567', 'i.wahabi@inpt.ine.ma', 5);
+
+-- Insert PFEs
+INSERT INTO pfes (etudiant_id, titre, resume, organisme, encadrant_ex, email_ex, encadrant_in_id) VALUES
+(1, 'Développement d une application de gestion scolaire', 'Ce projet consiste à développer une application web pour la gestion des étudiants et des notes', 'OCP Group', 'Dr. Hamid Essabbar', 'h.essabbar@ocpgroup.ma', 1),
+(2, 'Système de recommandation pour les films', 'Implémentation d un algorithme de recommandation basé sur le machine learning', 'IBM Maroc', 'Mme. Samira Belouali', 's.belouali@ibm.com', 2),
+(5, 'Sécurisation des réseaux d entreprise', 'Mise en place d une solution de sécurité pour les réseaux d une grande entreprise', 'Maroc Telecom', 'M. Rachid El Fahsi', 'r.elfahsi@iam.ma', 4);
+
+-- Insert users with plain text passwords
+-- Admin user
+INSERT INTO users (email, password, role, user_id) VALUES 
+('admin@inpt.ma', 'admin123', 'admin', NULL);
+
+-- Teacher users
+INSERT INTO users (email, password, role, user_id) VALUES
+('m.alaoui@inpt.edu.ma', 'prof123', 'enseignant', 1),
+('f.benbrahim@inpt.edu.ma', 'prof456', 'enseignant', 2),
+('a.khalil@inpt.edu.ma', 'prof789', 'enseignant', 3),
+('a.mansouri@inpt.edu.ma', 'prof012', 'enseignant', 4),
+('y.elamrani@inpt.edu.ma', 'prof345', 'enseignant', 5),
+('l.bouzidi@inpt.edu.ma', 'prof678', 'enseignant', 6);
+
+-- Student users
+INSERT INTO users (email, password, role, user_id) VALUES
+('k.benali@inpt.ine.ma', 'etudiant1', 'etudiant', 1),
+('a.elfassi@inpt.ine.ma', 'etudiant2', 'etudiant', 2),
+('m.zouhair@inpt.ine.ma', 'etudiant3', 'etudiant', 3),
+('s.bennani@inpt.ine.ma', 'etudiant4', 'etudiant', 4),
+('o.cherkaoui@inpt.ine.ma', 'etudiant5', 'etudiant', 5),
+('h.daoudi@inpt.ine.ma', 'etudiant6', 'etudiant', 6),
+('y.rhouzlane@inpt.ine.ma', 'etudiant7', 'etudiant', 7),
+('n.saidi@inpt.ine.ma', 'etudiant8', 'etudiant', 8),
+('a.toumi@inpt.ine.ma', 'etudiant9', 'etudiant', 9),
+('i.wahabi@inpt.ine.ma', 'etudiant10', 'etudiant', 10);
